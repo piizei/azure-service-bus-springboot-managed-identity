@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.azure.identity.AzureCliCredentialBuilder;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.messaging.servicebus.*;
 
@@ -33,7 +32,7 @@ public class DemoApplication {
 		
 		CountDownLatch countdownLatch = new CountDownLatch(1);
 		ServiceBusProcessorClient client =  new ServiceBusClientBuilder()
-		.credential(hostName, new AzureCliCredentialBuilder().build())
+		.credential(hostName, new DefaultAzureCredentialBuilder().build())
 		.processor()
 		.queueName(queueName)
 		.processMessage(DemoApplication::processMessage)
